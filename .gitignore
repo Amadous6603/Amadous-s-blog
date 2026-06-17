@@ -1,0 +1,28 @@
+# Dependencies
+frontend/node_modules/
+
+# Build outputs
+frontend/dist/
+backend/target/
+backend/src/main/resources/static/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database (local)
+backend/data/
+
+# Claude Code (local)
+.claude/
+docs/
+
+# Environment / secrets
+*.log
+.env
+.env.local

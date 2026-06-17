@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8mb4
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: blog
+    password: blog_password_change_me
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+jwt:
+  secret: amadous-blog-jwt-secret-key-change-in-production-2026
+  expiration-ms: 604800000
