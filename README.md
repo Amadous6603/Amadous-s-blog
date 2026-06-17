@@ -1,6 +1,6 @@
 # Amadous的小屋
 
-个人博客系统，Spring Boot + React 全栈，毛玻璃风格，樱花飘落背景。
+个人博客系统，Spring Boot + React 全栈。
 
 ## 技术栈
 
@@ -9,7 +9,7 @@
 | 前端 | React 18, TypeScript, Tailwind CSS v4, Vite |
 | 后端 | Spring Boot 3.2, JPA, MariaDB |
 | 鉴权 | JWT (jjwt 0.12) + BCrypt |
-| 部署 | 单 JAR 包，Nginx 反向代理 |
+| 部署 | Nginx 反向代理 |
 
 ## 功能
 
@@ -70,14 +70,8 @@ GRANT ALL ON blog.* TO 'blog'@'localhost';
 
 修改 `backend/src/main/resources/application.yml` 中的数据库连接信息。
 
-### 构建
 
-```bash
-# 一键构建：前端 + 后端 JAR
-bash build.sh
-```
-
-JAR 输出在 `backend/target/blog-1.0.0.jar`。
+JAR 输出在 `backend/target/blog.jar`。
 
 ### 运行
 
@@ -95,36 +89,3 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now blog
 sudo journalctl -u blog -f  # 查看日志
 ```
-
-## Nginx + HTTPS
-
-```nginx
-server {
-    listen 443 ssl;
-    server_name your-domain.com;
-
-    ssl_certificate     /etc/letsencrypt/live/your-domain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
-
-    location / {
-        proxy_pass http://127.0.0.1:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Authorization $http_authorization;
-    }
-}
-
-server {
-    listen 80;
-    server_name your-domain.com;
-    return 301 https://$host$request_uri;
-}
-```
-
-## 背景图片
-
-将背景图命名为 `bg-1.jpg`, `bg-2.jpg`, ... 放入 `frontend/public/background/`，构建时自动复制。
-
-如需修改图片数量或名称，编辑 `frontend/src/components/BackgroundSlideshow.tsx` 中的 `IMAGES` 数组。轮播间隔 8 秒，切换动画 2 秒。
