@@ -6,11 +6,6 @@ FRONTEND_DIR="$ROOT_DIR/frontend"
 BACKEND_DIR="$ROOT_DIR/backend"
 STATIC_DIR="$BACKEND_DIR/src/main/resources/static"
 
-echo "========================================="
-echo "  Midnight Library — Build & Package"
-echo "========================================="
-echo ""
-
 # 1. Build React frontend
 echo "[1/3] Building frontend..."
 cd "$FRONTEND_DIR"
