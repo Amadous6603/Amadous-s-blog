@@ -40,7 +40,7 @@ jobs:
 
       # ==================== 部署 ====================
       - name: Deploy frontend to server
-        uses: appleboy/scp-action@v0
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
